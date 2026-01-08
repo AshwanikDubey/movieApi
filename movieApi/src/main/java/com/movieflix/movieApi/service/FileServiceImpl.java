@@ -1,6 +1,7 @@
 package com.movieflix.movieApi.service;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,15 +32,14 @@ public class FileServiceImpl implements FileService {
 		
 		//Upload File
 		Files.copy(file.getInputStream(), Paths.get(filePath),StandardCopyOption.REPLACE_EXISTING);
-		
-		
 		return fileName;
 	}
 
 	@Override
-	public InputStream getResourceFile(String path, String name) throws FileNotFoundException {
+	public InputStream getResourceFile(String path, String fileName) throws FileNotFoundException {
+		 String filePath = path + File.separator +fileName;
 		 
-		return null;
+		return new FileInputStream(filePath);
 	}
 
 }
